@@ -32,7 +32,7 @@ class Main(tk.Frame):
         self.MCButton.pack()
         self.RMButton = tk.Button(self,text="Reminder",bg ="black", fg = "white",command=lambda: controller.show_frame("Reminder"))
         self.RMButton.pack()
-        self.FMButton = tk.Button(self,text="Form",bg ="black", fg = "white",command=lambda: controller.show_frame("Form"))
+        self.FMButton = tk.Button(self,text="Feedback",bg ="black", fg = "white",command=lambda: controller.show_frame("Feedback"))
         self.FMButton.pack()
         self.AUButton = tk.Button(self,text="About the App",bg ="black", fg = "white",command=lambda: controller.show_frame("Aboutus"))
         self.AUButton.pack()
@@ -70,16 +70,23 @@ class Reminder(tk.Frame):
 
         self.BCButton = tk.Button(self,text="Back",font = titlefont,bg ="black", fg = "white",command=lambda: controller.show_frame("Main"))
         self.BCButton.pack(side = "bottom")
-        button = Button(self, text="Save",command=lambda: self.save())
-        button.pack()
-  #      self.saveButton = tk.Button(self,text="Save",font = paragraphfont,bg ="black", fg = "white",command=lambda: controller.show_frame("Main"))
- #       self.saveButton.pack()
+        self.saveButton = tk.Button(self,text="Save",font = paragraphfont,bg ="black", fg = "white",command=lambda: controller.show_frame("Main"))
+        self.saveButton.pack()
         
 
 class MyCalendar(tk.Frame):
     def __init__(self,parent,controller):
         tk.Frame.__init__(self,parent)
         self.controller = controller
+        self.title1 = tk.Label(self, text = "The Calendar", font = titlefont)
+        self.title1.pack(side = "top",fill ="x", pady = 10)
+        self.welcome = tk.Label(self, text = "Please enter the Year and Month", font=paragraphfont)
+        self.welcome.pack(side ="top" , fill ="x")
+        self.welcome1 = tk.Label(self, text = "of the calendar you would like to see", font = paragraphfont)
+        self.welcome1.pack(side ="top", fill = "x")
+        self.welcome2 = tk.Label(self, text = "EX: Year: 2018, Month: 12", font = paragraphfont)
+        self.welcome2.pack(side = "top" , fill = "x")
+
         label1 = tk.Label(self, text="Year:")
         label1.pack()
         self.Year = StringVar ()
@@ -105,21 +112,21 @@ class MyCalendar(tk.Frame):
         print (cal_x)
         cal_out = tk.Label(self, text=cal_x, font=('courier', 12, 'bold'), justify = LEFT, bg='lightblue')
         cal_out.pack(padx=3, pady=10, expand=True)
-class Form(tk.Frame):
+class Feedback(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent)
         self.controller = controller
-        self.title1 = tk.Label(self, text = "Form", font = titlefont)
+        self.title1 = tk.Label(self, text = "Feedback", font = titlefont)
         self.title1.pack(side = "top",fill ="x", pady = 10)
-        self.welcome = tk.Label(self, text = "Please Feel free to leave your", font=paragraphfont)
+        self.welcome = tk.Label(self, text = "Please feel free to leave your", font=paragraphfont)
         self.welcome.pack(side ="top" , fill ="x")
-        self.welcome1 = tk.Label(self, text = "comments/concerns here!", font = paragraphfont)
+        self.welcome1 = tk.Label(self, text = "comments/concerns here:", font = paragraphfont)
         self.welcome1.pack(side = "top", fill = "x")
         
         self.comment = StringVar ()
         
-        label1 = tk.Label(self, text="Comments/Concerns:")
-        label1.pack()
+        #label1 = tk.Label(self, text="Comments/Concerns:")
+        #label1.pack()
         e1 = Entry(self, textvariable=self.comment)
         e1.pack()
         print(e1)
@@ -127,25 +134,28 @@ class Form(tk.Frame):
 
         self.BCButton = tk.Button(self,text="Back",font = titlefont,bg ="black", fg = "white",command=lambda: controller.show_frame("Main"))
         self.BCButton.pack(side = "bottom")
+        button = Button(self, text="Add Comment",command=lambda: self.save())
+        button.pack()
         
         
-    def cal(self):
+    def save(self):
         y = self.comment.get()
 
         print (y)
-        save_out = tk.Label(self, text=cal_x, font=('courier', 12, 'bold'), justify = LEFT, bg='lightblue')
-        save_out.pack(padx=3, pady=10, expand=True)
+        save_out = tk.Label(self, text=y, font=('courier', 12, 'bold'), justify = CENTER, bg='black', fg = "white")
+        save_out.pack()
+        
  
-    def retrieve_input():
-        inputValue = tk.textBox.get("1.0","end-1c")
-        print(inputValue)
+    #def retrieve_input():
+#        inputValue = tk.textBox.get("1.0","end-1c")
+#        print(inputValue)
 
-        textBox=Text(root, height=2, width=10)
-        textBox.pack()
-        buttonCommit=Button(root, height=1, width=10, text="Commit", 
-                    command=lambda: retrieve_input())
+#        textBox=Text(root, height=2, width=10)
+#        textBox.pack()
+#        buttonCommit=Button(root, height=1, width=10, text="Commit", 
+                    #command=lambda: retrieve_input())
 #command=lambda: retrieve_input() >>> just means do this when i press the button
-        buttonCommit.pack()
+#        buttonCommit.pack()
         
    # def writeToFile(self):
         #with open('WorkOrderLog.csv', 'a') as f:
@@ -157,10 +167,10 @@ class Aboutus(tk.Frame):
         self.controller = controller
         self.title1 = tk.Label(self, text = "Here's A little about the app", font = titlefont)
         self.title1.pack(side = "top",fill ="x", pady = 10)
-        self.welcome = tk.Label(self, text = "Ever Had a problem remebering things constantly?", font=paragraphfont)
+        self.welcome = tk.Label(self, text = "Ever Had a problem remembering things constantly?", font=paragraphfont)
         self.welcome.pack(side ="top" , fill ="x")
         self.welcome1 = tk.Label(self, text = "Then MyCalendar is just right for you.", font = paragraphfont)
-        self.welcome2 = tk.Label(self, text = "This app is simple little calendar generator", font = paragraphfont)
+        self.welcome2 = tk.Label(self, text = "This app is a simple little calendar generator", font = paragraphfont)
         self.welcome2.pack(side = "top" , fill = "x")
         self.welcome3 = tk.Label(self, text = "that was made with the forgetful (such as myself) in mind.", font=paragraphfont)
         self.welcome3.pack(side = "top" , fill = "x")
@@ -191,7 +201,7 @@ class App(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for i in (Main, MyCalendar, Reminder,Form,Aboutus):
+        for i in (Main, MyCalendar, Reminder,Feedback,Aboutus):
             page_name = i.__name__
             frame = i(parent=container, controller=self)
             self.frames[page_name] = frame
